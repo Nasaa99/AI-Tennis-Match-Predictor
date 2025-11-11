@@ -106,13 +106,6 @@ AI tennis match predictor/
 │   ├── package.json     # Node dependencies
 │   └── vite.config.js   # Vite configuration
 │
-├── templates/            # Flask templates (legacy)
-│   └── index.html
-│
-├── static/               # Static files (legacy)
-│   ├── style.css
-│   └── script.js
-│
 └── predictor.ipynb      # Jupyter notebook (model development)
 ```
 
@@ -173,48 +166,87 @@ AI tennis match predictor/
 
 ## 🌐 Deployment
 
-### Environment Variables
+### Quick Deployment Guide
 
-Set these in your hosting platform:
+This app uses a **split deployment** approach:
+- **Backend (Flask API)**: Deploy to Railway/Render/Heroku
+- **Frontend (React)**: Deploy to Vercel/Netlify
 
+### Step 1: Deploy Backend (Railway - Recommended)
+
+1. **Go to**: https://railway.app
+2. **Sign up** with GitHub
+3. **Create New Project** → "Deploy from GitHub repo"
+4. **Select repository**: `Nasaa99/AI-Tennis-Match-Predictor`
+5. **Railway auto-detects** Python and Flask
+6. **Set Environment Variables** (Service → Variables):
+   ```
+   FLASK_ENV=production
+   FLASK_DEBUG=False
+   PORT=5000
+   ```
+7. **Deploy!** Railway will automatically install dependencies and start your app
+8. **Get your backend URL**: `https://your-app.railway.app`
+
+**Alternative Backend Options:**
+- **Render**: Similar to Railway, connect GitHub repo
+- **Heroku**: Requires CLI, add gunicorn to requirements.txt
+
+### Step 2: Deploy Frontend (Vercel - Recommended)
+
+1. **Go to**: https://vercel.com
+2. **Sign up** with GitHub
+3. **Import** repository: `Nasaa99/AI-Tennis-Match-Predictor`
+4. **Configure**:
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Install Command**: `npm install --legacy-peer-deps --ignore-scripts`
+5. **Add Environment Variable**:
+   - **Name**: `VITE_API_URL`
+   - **Value**: Your Railway backend URL (from Step 1)
+6. **Deploy!**
+
+**Note**: The `frontend/vercel.json` and `frontend/.npmrc` files are already configured to help with deployment.
+
+### Environment Variables Summary
+
+**Backend (Railway/Render/Heroku):**
 ```bash
 FLASK_ENV=production
 FLASK_DEBUG=False
 PORT=5000
-VITE_API_URL=https://your-backend-url.com  # For frontend
 ```
 
-### Deployment Options
+**Frontend (Vercel):**
+```bash
+VITE_API_URL=https://your-backend-url.railway.app
+```
 
-#### Option 1: Heroku
+### GitHub Setup
 
-1. Install Heroku CLI
-2. Login: `heroku login`
-3. Create app: `heroku create your-app-name`
-4. Set environment variables in Heroku dashboard
-5. Deploy: `git push heroku main`
+If deploying from GitHub:
 
-#### Option 2: Railway / Render
-
-1. Connect GitHub repository
-2. Set build command: `pip install -r requirements.txt`
-3. Set start command: `python app.py`
-4. Configure environment variables
-
-#### Option 3: VPS (DigitalOcean, AWS EC2)
-
-1. Install Python 3.7+, Node.js
-2. Clone repository
-3. Install dependencies
-4. Use gunicorn for production:
+1. **Create GitHub repository**
+2. **Push your code**:
    ```bash
-   pip install gunicorn
-   gunicorn -w 4 -b 0.0.0.0:5000 app:app
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/YOUR_USERNAME/REPO_NAME.git
+   git branch -M main
+   git push -u origin main
    ```
-5. Build frontend: `cd frontend && npm run build`
-6. Serve with nginx
+3. **Connect to Railway/Vercel** using GitHub integration
 
-See `DEPLOYMENT_CHECKLIST.md` for detailed deployment guide.
+### Post-Deployment Checklist
+
+- [ ] Test backend API: `https://your-backend-url/api/players`
+- [ ] Test frontend connects to backend
+- [ ] Verify predictions work
+- [ ] Check error handling
+- [ ] Monitor logs for issues
 
 ## 🐛 Troubleshooting
 

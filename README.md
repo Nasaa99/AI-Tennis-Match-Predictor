@@ -4,6 +4,8 @@ A full-stack web application that uses machine learning to predict tennis match 
 
 🌐 **Live Demo**: [https://ai-tennis-match-predictor.vercel.app/](https://ai-tennis-match-predictor.vercel.app/)
 
+**👉 This is the main URL - everything runs from here!** The frontend automatically connects to the backend API.
+
 ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)
 ![React](https://img.shields.io/badge/React-18+-blue.svg)
@@ -170,8 +172,11 @@ AI tennis match predictor/
 
 ### Live URLs
 
-- **Frontend (Vercel)**: https://ai-tennis-match-predictor.vercel.app/
-- **Backend API (Railway)**: https://web-production-a621b.up.railway.app/
+**Main Application (Use This One!):**
+- 🌐 **https://ai-tennis-match-predictor.vercel.app/** ← Click here to use the app!
+
+**Backend API (For Developers):**
+- 🔧 **https://web-production-a621b.up.railway.app/** ← API endpoints only
 
 ### Deployment Status
 

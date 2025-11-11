@@ -2,6 +2,8 @@
 
 A full-stack web application that uses machine learning to predict tennis match outcomes based on historical ATP data, player statistics, and match factors.
 
+🌐 **Live Demo**: [https://ai-tennis-match-predictor.vercel.app/](https://ai-tennis-match-predictor.vercel.app/)
+
 ![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)
 ![React](https://img.shields.io/badge/React-18+-blue.svg)
@@ -165,6 +167,21 @@ AI tennis match predictor/
 - `GET /api/player-stats/<player_name>` - Get detailed player statistics
 
 ## 🌐 Deployment
+
+### Live URLs
+
+- **Frontend (Vercel)**: https://ai-tennis-match-predictor.vercel.app/
+- **Backend API (Railway)**: https://web-production-a621b.up.railway.app/
+
+### Deployment Status
+
+✅ **Frontend**: Deployed on Vercel (auto-deploys on every push to main branch)  
+✅ **Backend**: Deployed on Railway (auto-deploys on every push to main branch)
+
+**Note**: Both deployments are permanent and will stay live as long as:
+- You don't delete the projects
+- You stay within free tier limits (both platforms offer generous free tiers)
+- Your GitHub repository remains connected
 
 ### Quick Deployment Guide
 

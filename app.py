@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import numpy as np
@@ -212,8 +212,17 @@ def train_model(matches_rolling):
 
 @app.route('/')
 def index():
-    """Serve the main page"""
-    return render_template('index.html')
+    """API root endpoint"""
+    return jsonify({
+        'message': 'AI Tennis Match Predictor API',
+        'version': '1.0',
+        'endpoints': {
+            'players': '/api/players',
+            'tournaments': '/api/tournaments',
+            'predict': '/api/predict',
+            'player_stats': '/api/player-stats/<player_name>'
+        }
+    })
 
 @app.route('/api/players', methods=['GET'])
 def get_players():

@@ -1,4 +1,7 @@
-const API_BASE_URL = '/api'
+// Use environment variable for production, fallback to /api for development
+const API_BASE_URL = import.meta.env.VITE_API_URL 
+  ? `${import.meta.env.VITE_API_URL}/api` 
+  : '/api'
 
 export const getPlayers = async () => {
   try {

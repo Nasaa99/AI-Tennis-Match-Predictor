@@ -138,7 +138,7 @@ def create_competitive_dataset(matches):
         df["recent_matches"] = df["target"].rolling(5, closed="left").count()
         return df
     
-    competitive_matches = competitive_matches.groupby("player").apply(add_recent_form).reset_index(drop=True)
+    competitive_matches = competitive_matches.groupby("player", group_keys=False).apply(add_recent_form).reset_index(drop=True)
     
     # Add ranking momentum
     competitive_matches["rank_momentum"] = competitive_matches.groupby("player")["rank"].diff().fillna(0)

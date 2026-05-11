@@ -157,11 +157,10 @@ def create_rolling_dataset(competitive_matches):
     cols = ["target", "rank", "pts", "implied", "h2h_win_rate", "recent_form", "rank_momentum"]
     new_cols = [f"{c}_rolling" for c in cols]
     
-    matches_rolling = competitive_matches.groupby("player").apply(
+    matches_rolling = competitive_matches.groupby("player", group_keys=False).apply(
         lambda g: rolling_averages(g, cols, new_cols)
     )
     
-    matches_rolling = matches_rolling.droplevel(0)
     matches_rolling.index = range(matches_rolling.shape[0])
     
     return matches_rolling
